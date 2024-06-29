@@ -29,7 +29,7 @@ function oldScrabbleScorer(word) {
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
-let info = "";
+//let info = input.question("Let's play some scrabble! Enter a word:");
 function initialPrompt() {
   info = input.question("Let's play some scrabble! Enter a word:");
   //-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -37,6 +37,7 @@ function initialPrompt() {
   //let finalScore = oldScrabbleScorer(info);
   // console.log(`Points for '${info}': ${finalScore}\n`);
   //-----------------------------------------------------------------------------------------------------------------------------------------------
+  return info;
 }
 function transform(oldPointStructure) 
 {
@@ -121,8 +122,9 @@ let scrabbleObject = {
 
 const scoringAlgorithms = [simpObject, vowelObject, scrabbleObject];
 
-let selectedAlgorithm = "";
+
 function scorerPrompt() {
+  let selectedAlgorithm = "";
   console.log("Which scoring algorithm would you like to use?");
   console.log();
   console.log("0 - Simple: One point per character");
