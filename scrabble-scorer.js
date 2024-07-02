@@ -31,29 +31,30 @@ function oldScrabbleScorer(word) {
 
 //let info = input.question("Let's play some scrabble! Enter a word:");
 function initialPrompt() {
-  info = input.question("Let's play some scrabble! Enter a word:");
+  let info = input.question("Let's play some scrabble! Enter a word:");
+
   //-----------------------------------------------------------------------------------------------------------------------------------------------
   //I took the console.log() which just printed a string and transformed it into a function where the user can input a word for the algorithm above.
   //let finalScore = oldScrabbleScorer(info);
   // console.log(`Points for '${info}': ${finalScore}\n`);
+  //I have to initialize the user's word in the variable info 
+  //I have to return said variable from initialPrompt()
+  //I have to pass it into scorerPrompt()
   //-----------------------------------------------------------------------------------------------------------------------------------------------
   return info;
 }
-function transform(oldPointStructure) 
-{
-let newPointObj = {};
-for (let points in oldPointStructure) {
-
-  for (let letter of oldPointStructure[points]) {
+function transform(oldPointStructure) {
+  let newPointObj = {};
+  for (let points in oldPointStructure) {
+    for (let letter of oldPointStructure[points]) {
       //objectName[myNewKey] = newValue
-      newPointObj[letter.toLowerCase()] = Number(points)
+      newPointObj[letter.toLowerCase()] = Number(points);
+    }
   }
-}
-return newPointObj;
+  return newPointObj;
 }
 
 let newPointStructure = transform(oldPointStructure);
-
 
 let simpleScorer = function (word) {
   word = word.toLowerCase();
@@ -93,7 +94,7 @@ let scrabbleScorer = function (word) {
   word = word.toLowerCase();
   let ogScrabbleScore = 0;
   for (let i = 0; i < word.length; i++) {
-     ogScrabbleScore +=  newPointStructure[word[i]]
+    ogScrabbleScore += newPointStructure[word[i]];
   }
   //console.log("Checking the score:" + ogScrabbleScore);
   return ogScrabbleScore;
@@ -122,8 +123,7 @@ let scrabbleObject = {
 
 const scoringAlgorithms = [simpObject, vowelObject, scrabbleObject];
 
-
-function scorerPrompt() {
+function scorerPrompt(userInput) {
   let selectedAlgorithm = "";
   console.log("Which scoring algorithm would you like to use?");
   console.log();
@@ -132,17 +132,18 @@ function scorerPrompt() {
   console.log("2 - Scrabble: Uses scrabble point system");
   selectedAlgorithm = input.question("Enter 0, 1, or 2: ");
   const bangAlgorithm = scoringAlgorithms[selectedAlgorithm];
-  console.log(bangAlgorithm.scorerFunction(info));
-  console.log(`Score for '${info}': '${bangAlgorithm.scorerFunction(info)}'`);
+  console.log(bangAlgorithm.scorerFunction(userInput));
+  console.log(`Score for '${userInput}': '${bangAlgorithm.scorerFunction(userInput)}'`);
 }
+
 
 //------------------------------------------------------------------------------
 //In transform() I am defining this function to iterate in oldPointStructure + switch the key/value pairs
 //Need this function to use in newPointStructure()
 //------------------------------------------------------------------------------
 function runProgram() {
-  initialPrompt();
-  scorerPrompt();
+  let catchingInfo = initialPrompt();
+  scorerPrompt(catchingInfo);
 }
 
 // Don't write any code below this line //
